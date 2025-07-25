@@ -25,3 +25,4 @@ MAIL_USERNAME=your_email@gmail.com
 MAIL_PASSWORD=app_password
 GOOGLE_CLIENT_ID=your_google_client_id
 GOOGLE_CLIENT_SECRET=your_google_client_secret
+.env.local
