@@ -1,0 +1,55 @@
+server:
+  port: ${PORT:7000}  # default 8080 if PORT not set
+
+spring:
+  datasource:
+    url: #${PROD_DB_URL}           # Example: jdbc:postgresql://mydb.postgres.database.azure.com:5432/prepsaga
+    username: # ${PROD_DB_USERNAME}
+    password: #${PROD_DB_PASSWORD}
+    driver-class-name: #org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: validate           # safer than update in prod
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${MAIL_USERNAME}
+    password: ${MAIL_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: ${GOOGLE_CLIENT_ID}
+            client-secret: ${GOOGLE_CLIENT_SECRET}
+            scope:
+              - profile
+              - email
+            redirect-uri: "https://your-domain.com/login/oauth2/code/google"
+            authorization-grant-type: authorization_code
+            client-name: Google
+        provider:
+          google:
+            authorization-uri: https://accounts.google.com/o/oauth2/auth
+            token-uri: https://oauth2.googleapis.com/token
+            user-info-uri: https://www.googleapis.com/oauth2/v3/userinfo
+
+logging:
+  level:
+    root: WARN
+    com.prepsaga: INFO
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %logger{36} - %msg%n"

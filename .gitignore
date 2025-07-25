@@ -1,0 +1,27 @@
+# Java
+target/
+*.class
+
+# Logs
+*.log
+
+# IntelliJ
+.idea/
+*.iml
+
+# VS Code
+.vscode/
+
+# Environment & secrets
+*.env
+application.properties
+application.yml
+README.md
+
+DB_USERNAME=postgres
+DB_PASSWORD=password123
+JWT_SECRET=my_jwt_secret_key
+MAIL_USERNAME=your_email@gmail.com
+MAIL_PASSWORD=app_password
+GOOGLE_CLIENT_ID=your_google_client_id
+GOOGLE_CLIENT_SECRET=your_google_client_secret
