@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/prepsaga
+    url: jdbc:postgresql://prepsaga-db.postgres.database.azure.com:5432/postgres?sslmode=require
     #url: ${DB_URL}
     username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
