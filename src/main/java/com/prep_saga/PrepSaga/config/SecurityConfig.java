@@ -2,6 +2,7 @@ package com.prep_saga.PrepSaga.config;
 
 import com.prep_saga.PrepSaga.security.JwtAuthenticationFilter;
 import com.prep_saga.PrepSaga.security.JwtTokenProvider;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -21,6 +22,9 @@ import java.util.Arrays;
 public class SecurityConfig {
 
     private final JwtTokenProvider jwtTokenProvider;
+    // Inject frontend redirect URL from properties
+    @Value("${app.frontend.redirect-url}")
+    private String frontendRedirectUrl;
 
     public SecurityConfig(JwtTokenProvider jwtTokenProvider) {
         this.jwtTokenProvider = jwtTokenProvider;
@@ -49,7 +53,7 @@ public class SecurityConfig {
                         .loginPage("/login") // Custom login page if you have one
                         .successHandler((request, response, authentication) -> {
                             // ✅ Custom Redirect After Successful OAuth2 Login
-                            response.sendRedirect("http://localhost:3000/userDashboard");
+                            response.sendRedirect(frontendRedirectUrl);
                         })
                         .failureUrl("/login?error=true") // Optional: redirect on login failure
                 );
@@ -61,8 +65,8 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000")); // Your frontend URL
-        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE")); // Allow all HTTP methods
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000", "https://prepsaga-frontend-b4a9h6c2f2bagze4.canadacentral-01.azurewebsites.net")); // Your frontend URL
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE","OPTIONS")); // Allow all HTTP methods
         configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type")); // Allow headers
         configuration.setAllowCredentials(true); // Allow credentials (e.g., cookies)
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();

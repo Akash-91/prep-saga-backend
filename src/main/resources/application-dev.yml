@@ -1,7 +1,7 @@
 spring:
   datasource:
-    url: jdbc:postgresql://prepsaga-db.postgres.database.azure.com:5432/postgres?sslmode=require
-    #url: ${DB_URL}
+    #url: jdbc:postgresql://prepsaga-db.postgres.database.azure.com:5432/postgres?sslmode=require
+    url: ${DB_URL}
     username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
@@ -51,3 +51,8 @@ logging:
     com.prepsaga: DEBUG
   pattern:
     console: "%d{yyyy-MM-dd HH:mm:ss} - %logger{36} - %msg%n"
+
+# Add here at root level
+app:
+  frontend:
+    redirect-url: http://localhost:3000/userDashboard
