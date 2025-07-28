@@ -55,3 +55,12 @@ logging:
 app:
   frontend:
     redirect-url: https://prepsaga-frontend-b4a9h6c2f2bagze4.canadacentral-01.azurewebsites.net/userDashboard
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  endpoint:
+    health:
+      show-details: always
