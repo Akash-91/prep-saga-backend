@@ -6,8 +6,7 @@ on:
     paths:
       - 'backend/**'
       - '.github/workflows/backend-build-deploy.yml'
-
-workflow_dispatch:  # Allows manual run from GitHub Actions tab
+  workflow_dispatch:  # Allows manual run from GitHub Actions tab
 
 jobs:
   build-and-deploy:
