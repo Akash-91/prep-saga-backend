@@ -67,7 +67,8 @@ public class SecurityConfig {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000", "https://prepsaga-frontend-b4a9h6c2f2bagze4.canadacentral-01.azurewebsites.net")); // Your frontend URL
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE","OPTIONS")); // Allow all HTTP methods
-        configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type")); // Allow headers
+        configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type","x-correlation-id"));
+        configuration.addExposedHeader("x-correlation-id");// Allow headers
         configuration.setAllowCredentials(true); // Allow credentials (e.g., cookies)
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);

@@ -5,12 +5,14 @@ import com.prep_saga.PrepSaga.entity.User;
 import com.prep_saga.PrepSaga.model.RegisterRequest;
 import com.prep_saga.PrepSaga.security.JwtTokenProvider;
 import com.prep_saga.PrepSaga.service.auth.AuthService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/auth")
+@Slf4j
 public class AuthController {
 
     private final AuthService authService;
@@ -35,6 +37,7 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<?> authenticateUser(@RequestBody User loginRequest) {
+        log.info("User" + loginRequest.getUserName() + " trying to login.");
         return authService.login(loginRequest);
     }
 
