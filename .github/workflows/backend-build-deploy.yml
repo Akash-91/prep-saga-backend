@@ -35,7 +35,8 @@ jobs:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       - name: Deploy to Azure Web App Container
-        uses: azure/webapps-container-deploy@v1
+        uses: azure/webapps-deploy@v2
         with:
           app-name: ${{ secrets.APP_NAME_BACKEND }}
+          publish-profile: ${{ secrets.AZURE_CREDENTIALS }}
           images: '${{ secrets.REGISTRY_LOGIN_SERVER }}/prep-backend:latest'
