@@ -15,7 +15,7 @@ public class MailService {
 
     public void sendVerificationEmail(String to, String userName, String token) {
         String subject = "Verify your PrepSaga account";
-        String verificationLink = "http://localhost:8082/api/auth/verify?token=" + token;
+        String verificationLink = "http://localhost:8081/api/auth/verify?token=" + token;
         String content = getHtmlTemplate(userName, verificationLink);
 
         try {
