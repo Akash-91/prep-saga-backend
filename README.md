@@ -64,10 +64,21 @@ Edit
 ---
 
 ## 🐳 Docker
+# Navigate to backend directory
+cd prep-saga-backend
 
-```bash
-# Build Docker image
-docker build -t prep-backend .
+# Build Docker image (with your Docker Hub username)
+docker build -t akash91/prep-backend:latest .
 
-# Run locally
-docker run -p 8080:8080 --env-file .env prep-backend
+# Run locally with environment variables
+docker run -p 8080:8080 --env-file .env akash91/prep-backend:latest
+
+# Login to Docker Hub
+docker login
+
+# Push to Docker Hub
+docker push akash91/prep-backend:latest
+
+
+Replace akash91 with your Docker Hub username if different.
+
