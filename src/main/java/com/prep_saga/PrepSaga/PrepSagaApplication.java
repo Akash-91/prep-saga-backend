@@ -16,4 +16,12 @@ public class PrepSagaApplication {
 		System.out.println(">>> JWT_SECRET from env: " + System.getenv("JWT_SECRET"));
 		System.out.println(">>> Active profile: " + System.getProperty("spring.profiles.active"));
 	}
+
+
+	@PostConstruct
+	public void logEnvironment() {
+		System.out.println("ACTIVE PROFILE: " + System.getProperty("spring.profiles.active"));
+		System.out.println("JWT_SECRET: " + System.getenv("JWT_SECRET"));
+		System.out.println("DB_HOST: " + System.getenv("DB_HOST"));
+	}
 }
