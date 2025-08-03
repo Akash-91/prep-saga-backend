@@ -6,8 +6,7 @@ on:
     paths:
       - 'backend/**'
       - '.github/workflows/backend-build-deploy.yml'
-
-workflow_dispatch:  # Allows manual run from GitHub Actions tab
+  workflow_dispatch:  # Allows manual run from GitHub Actions tab
 
 jobs:
   build-and-deploy:
@@ -29,9 +28,8 @@ jobs:
 
       - name: Build & Push Docker Image
         run: |
-          docker build -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/prep-backend:latest ./backend
+          docker build -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/prep-backend:latest .
           docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/prep-backend:latest
-
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v2
         with:
