@@ -17,6 +17,10 @@ RUN ./mvnw clean package -DskipTests -B -ntp
 FROM eclipse-temurin:17-jdk-alpine
 
 WORKDIR /app
+
+# Add environment variable to activate 'prod' profile
+ENV SPRING_PROFILES_ACTIVE=prod
+
 COPY --from=builder /app/target/*.jar app.jar
 
 EXPOSE 8081
