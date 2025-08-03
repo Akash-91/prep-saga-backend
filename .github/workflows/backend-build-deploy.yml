@@ -4,20 +4,27 @@ on:
   push:
     branches: [main]
     paths:
-      - '**'  # You can restrict to backend files or Dockerfile if you want
+      - 'backend/**'
+      - '.github/workflows/backend-build-deploy.yml'
+  workflow_dispatch:
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout Code
         uses: actions/checkout@v3
 
-      - name: Set up Docker Buildx
+      - name: Set up Docker
         uses: docker/setup-buildx-action@v3
 
-      - name: Login to Azure Container Registry
+      - name: Login to Azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Login to ACR
         uses: docker/login-action@v3
         with:
           registry: ${{ secrets.REGISTRY_LOGIN_SERVER }}
@@ -29,14 +36,8 @@ jobs:
           docker build -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/prep-backend:latest .
           docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/prep-backend:latest
 
-      - name: Azure Login
-        uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-      - name: Deploy to Azure Web App Container
+      - name: Deploy to Azure Web App (Container)
         uses: azure/webapps-deploy@v2
         with:
           app-name: ${{ secrets.APP_NAME_BACKEND }}
-          publish-profile: ${{ secrets.AZURE_CREDENTIALS }}
           images: '${{ secrets.REGISTRY_LOGIN_SERVER }}/prep-backend:latest'
