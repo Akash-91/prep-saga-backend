@@ -7,8 +7,8 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: update
-    show-sql: true
+      ddl-auto: validate
+    show-sql: false
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
@@ -35,7 +35,7 @@ spring:
             scope:
               - profile
               - email
-            redirect-uri: "http://localhost:8081/login/oauth2/code/google"
+            redirect-uri: {}
             authorization-grant-type: authorization_code
             client-name: Google
         provider:
@@ -47,14 +47,14 @@ spring:
 logging:
   level:
     root: INFO
-    com.prepsaga: DEBUG
+    com.prepsaga: INFO
   pattern:
     console: "%d{yyyy-MM-dd HH:mm:ss} - %logger{36} - %msg%n"
 
 # Add here at root level
 app:
   frontend:
-    redirect-url: https://prepsaga-frontend-b4a9h6c2f2bagze4.canadacentral-01.azurewebsites.net/userDashboard
+    redirect-url: {FE_REDIRECT_URI}
   jwt:
     secret: ${JWT_SECRET}
 
