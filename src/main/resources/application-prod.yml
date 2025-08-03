@@ -55,6 +55,8 @@ logging:
 app:
   frontend:
     redirect-url: https://prepsaga-frontend-b4a9h6c2f2bagze4.canadacentral-01.azurewebsites.net/userDashboard
+  jwt:
+    secret: ${JWT_SECRET}
 
 management:
   endpoints:
