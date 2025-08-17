@@ -1,6 +1,6 @@
 # 🧠 PrepSaga Backend
 
-A Spring Boot microservice for managing authentication, topic-based learning content, and secure API access — part of the PrepSaga full-stack system for interview preparation.
+A Spring Boot microservice for managing authentication, topic-based learning content, and secure API access — part of the PrepSaga full-stack system.
 
 ---
 
